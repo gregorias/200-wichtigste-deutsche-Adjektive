@@ -7,7 +7,7 @@ images/ folder.
 """
 import logging
 import re
-from typing import List
+from typing import List, Tuple
 
 import requests
 from bs4 import BeautifulSoup
@@ -21,7 +21,7 @@ def extract_filename_from_image_url(url: str):
     return re.compile(r'([^/]+)$').search(url)[1]
 
 
-def scrape_images_and_metadata_from_site(url: str) -> List:
+def scrape_images_and_metadata_from_site(url: str) -> Tuple:
     logging.info('Scraping image sources from: ' + url)
     response = requests.get(url)
     response.raise_for_status()
