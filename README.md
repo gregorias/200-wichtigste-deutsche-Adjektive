@@ -15,3 +15,13 @@ that deutschlernerblog.de has a collection of 100 images representing
 adjectives, and I thought that they would make for good flashcards: the images
 look good and placing opposite words side-by-side makes it easy to create a
 clear flashcard.
+
+## For Developers
+
+### Unit testing
+
+Run
+
+    ./dev/bin/testall
+
+to run this project's unit tests.
