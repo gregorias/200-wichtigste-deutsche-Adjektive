@@ -88,8 +88,7 @@ class SplitTestCase(unittest.TestCase):
             assertTwoImagesEqual(self, r, right_img)
 
     def test_split_double_adjective_pic(self):
-        dap = process.DoubleAdjectivePic.from_original(LEFT_RIGHT_IMG,
-                                                       subs=True)
+        dap = process.DoubleAdjectivePic.from_original(LEFT_RIGHT_IMG)
         expected_left_pic = process.SingleAdjectivePic(LEFT_IMG,
                                                        adjective='left',
                                                        subs=True)

@@ -150,10 +150,12 @@ class DoubleAdjectivePic(AdjectivePic):
                                                      right_adjective)
 
     @staticmethod
-    def from_original(filename: str, subs: bool):
+    def from_original(filename: str):
         left_adjective, right_adjective = (filename_to_adjectives(filename))
-        return DoubleAdjectivePic(filename, left_adjective, right_adjective,
-                                  subs)
+        return DoubleAdjectivePic(filename,
+                                  left_adjective,
+                                  right_adjective,
+                                  subs=True)
 
     @staticmethod
     def from_image(img: Image, left_adjective: str, right_adjective: str,
