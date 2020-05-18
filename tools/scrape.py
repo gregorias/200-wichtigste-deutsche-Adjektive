@@ -13,12 +13,15 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def extract_filename_from_image_url(url: str):
+def extract_filename_from_image_url(url: str) -> str:
     """
     >>> extract_filename_from_image_url('https://deutschlernerblog.de/wp-content/uploads/2017/07/wild_zahm_Adjektive_Deutsch_deutschlernerblog.png')
     'wild_zahm_Adjektive_Deutsch_deutschlernerblog.png'
     """
-    return re.compile(r'([^/]+)$').search(url)[1]
+    filename_match = re.compile(r'([^/]+)$').search(url)
+    if not filename_match:
+        raise Exception("Could not find the filename in " + url)
+    return filename_match[1]
 
 
 def scrape_images_and_metadata_from_site(url: str) -> Tuple:
@@ -62,13 +65,14 @@ def fetch_image_sources() -> List:
 
 
 def main():
-    logging.basicConfig(filename='scrape.log',level=logging.INFO)
+    logging.basicConfig(filename='scrape.log', level=logging.INFO)
     image_srcs = fetch_image_sources()
     metadata = []
     for img_url in image_srcs:
         fn = extract_filename_from_image_url(img_url)
         with open('images/' + fn, 'wb') as f:
             f.write(download_image(img_url))
+
 
 if __name__ == "__main__":
     main()

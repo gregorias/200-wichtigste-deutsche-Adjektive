@@ -18,10 +18,20 @@ clear flashcard.
 
 ## For Developers
 
+### Development shell
+
+For development comfort, this project  uses Pipenv to manage dependencies and
+the dev environment. Before each dev session run
+
+    psh
+
+to activate a dev subshell. The subshell configures shell and python
+environments for this project.
+
 ### Unit testing
 
 Run
 
-    ./dev/bin/testall
+    testall
 
-to run this project's unit tests.
+to run this project's static type checker and unit tests.
