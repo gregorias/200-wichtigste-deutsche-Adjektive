@@ -69,6 +69,13 @@ class PictureSizeTestCase(unittest.TestCase):
     def test_get_picture_size_returns_correct_size(self):
         self.assertEqual(process.get_picture_size(LEFT_RIGHT_IMG), (640, 402))
 
+    def test_resize_works(self):
+        sap_pic = process.SingleAdjectivePic(LEFT_NO_SUBS_IMG,
+                                             adjective='left',
+                                             subs=True)
+        new_sap_pic = sap_pic.resize(0.5)
+        self.assertEqual(new_sap_pic.get_size(), (160, 165))
+
 
 class SubtitleRemovalTestCase(unittest.TestCase):
     def test_remove_subs(self):

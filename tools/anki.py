@@ -2,22 +2,12 @@
 # -*- coding: utf-8 -*-
 """A collection of utilities for adding cards to Anki's DB."""
 from itertools import chain
+import os
 from typing import List
 
 from bs4 import BeautifulSoup as BS
 
 import anki
-
-# Anki Schema: https://github.com/ankidroid/Anki-Android/wiki/Database-Structure
-
-# Show models and decks
-# c.models.all()
-# c.decks.all()
-# tag:200-wichtigsten-deutschen-Adjektive
-
-# c.findCards('tag:xxx') -> List[Integer]
-# c.getCard(id) -> anki.cards.Card
-# c.getNote(anki.cards.Card.nid) -> anki.notes.Note
 
 
 # I often put silent hyphens to my cards to improve their layout.
@@ -106,5 +96,12 @@ def get_related_notes(col: anki.collection._Collection, adjs: List[str]):
 
 
 def open_my_collection() -> anki.collection._Collection:
-    return anki.storage.Collection(
-        '/home/grzesiek/Documents/Anki/grzesiek/collection.anki2')
+    cwd = os.getcwd()
+    try:
+        return anki.storage.Collection(
+            '/home/grzesiek/Documents/Anki/grzesiek/collection.anki2')
+    finally:
+        # Opening an Anki Collection can have the inadvertent effect of
+        # changing the PWD, so restore PWD afterwards.
+        if cwd != os.getcwd():
+            os.chdir(cwd)

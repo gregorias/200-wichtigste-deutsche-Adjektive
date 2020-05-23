@@ -129,6 +129,15 @@ class SingleAdjectivePic(AdjectivePic):
                                              adjective=self.adjective,
                                              subs=False)
 
+    def resize(self, scale: float) -> 'SingleAdjectivePic':
+        old_size = self.get_size()
+        with self.to_image() as img:
+            new_img = img.resize(
+                (int(old_size[0] * scale), int(old_size[1] * scale)))
+        return SingleAdjectivePic.from_image(new_img,
+                                             adjective=self.adjective,
+                                             subs=self.subs)
+
     def __eq__(self, other):
         with self.to_image() as img,\
                 other.to_image() as other_img:
