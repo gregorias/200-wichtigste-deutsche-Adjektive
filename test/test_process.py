@@ -20,6 +20,10 @@ RIGHT_IMG = path.join(TESTDATA_DIR, "right.png")
 
 
 def assertTwoImagesEqual(self, a: Image, b: Image, msg=None):
+    if a.size != b.size:
+        raise self.failureException(
+            "The image sizes differ: {} vs {}.\n{}".format(
+                a.size, b.size, msg))
     diff = ImageChops.difference(a, b)
     if diff.getbbox():
         raise self.failureException(
@@ -74,7 +78,7 @@ class PictureSizeTestCase(unittest.TestCase):
                                              adjective='left',
                                              subs=True)
         new_sap_pic = sap_pic.resize(0.5)
-        self.assertEqual(new_sap_pic.get_size(), (160, 165))
+        self.assertEqual(new_sap_pic.get_size(), (160, 164))
 
 
 class SubtitleRemovalTestCase(unittest.TestCase):

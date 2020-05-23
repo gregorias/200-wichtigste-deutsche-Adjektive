@@ -63,9 +63,9 @@ def get_picture_size(pic_filename: str) -> Tuple[int, int]:
 def remove_subs(pic: Image) -> Image:
     size = pic.size
     if size[1] == 402:
-        return pic.crop((0, 0, size[0], 330))
+        return pic.crop((0, 0, size[0], 329))
     if size[1] == 803:
-        return pic.crop((0, 0, size[0], 660))
+        return pic.crop((0, 0, size[0], 659))
     raise Exception("Not Implemented")
 
 
