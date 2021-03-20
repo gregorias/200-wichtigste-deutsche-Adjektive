@@ -12,6 +12,3 @@ bpython = "*"
 requests = ">=2.23"
 beautifulsoup4 = ">=4.9"
 pillow = ">=7.1.2"
-
-[requires]
-python_version = "3.8"
